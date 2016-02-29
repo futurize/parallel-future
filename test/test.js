@@ -1,6 +1,6 @@
 var expect = require('expect');
 var Task = require('data.task');
-var parallel = require('../');
+var parallel = require('../')(Task);
 
 
 const _ = () => expect(true).toNotBe(false);

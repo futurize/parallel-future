@@ -1,0 +1,44 @@
+{
+  "name": "parallel-future",
+  "version": "0.0.0",
+  "description": "Turn callback-style functions or promises into futures",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly --report html",
+    "codecov": "npm run test && codecov",
+    "release-major": "xyz --repo git@github.com:fantasyland/fantasy-birds.git --increment major",
+    "release-minor": "xyz --repo git@github.com:fantasyland/fantasy-birds.git --increment minor",
+    "release-patch": "xyz --repo git@github.com:fantasyland/fantasy-birds.git --increment patch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futurize/parallel-future.git"
+  },
+  "keywords": [
+    "future",
+    "task",
+    "promise",
+    "monad",
+    "parallel"
+  ],
+  "author": "schtoeffel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/futurize/parallel-future/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://github.com/futurize/parallel-future#readme",
+  "devDependencies": {
+    "codecov": "1.0.1",
+    "data.task": "3.0.0",
+    "expect": "1.14.0",
+    "istanbul": "^0.4.2",
+    "mocha": "2.4.5",
+    "mocha-lcov-reporter": "1.0.0"
+  },
+  "dependencies": {
+    "ramda": "^0.19.1"
+  }
+}

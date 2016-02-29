@@ -1,3 +1,4 @@
+// parallelFuture :: Future -> [Future a] -> Future [a]
 function parallelFuture (Future) {
   return function (futures) {
     var n = futures.length;

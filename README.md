@@ -10,9 +10,22 @@ parallel-future
 
 ## Example
 
+```js
+const Task = require('data.task');
+const parallel = require('../')(Task);
 
+
+const parallelRequests = parallel([ getUsers, getPosts ]);
+
+parallelRequests.fork(onRejected, (results) => {
+  console.log('Users', results[0]);
+  console.log('Posts', results[1]);
+});
+```
 
 ## API
+
+### `parallelFuture :: Future -> [Future a] -> Future [a]`
 
 
 ## License

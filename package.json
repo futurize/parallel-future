@@ -1,7 +1,7 @@
 {
   "name": "parallel-future",
   "version": "0.0.0",
-  "description": "Turn callback-style functions or promises into futures",
+  "description": "Run Futures in parallel",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly --report html",

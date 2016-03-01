@@ -42,4 +42,8 @@ describe('#parallel-future', () => {
              , time(3, 100)
              ]).fork(_, eventuallyEqual([1, 2, 3], done));
   });
+
+  it('should work on an empty array', done => {
+    parallel([]).fork(_, eventuallyEqual([], done));
+  });
 });

@@ -6,9 +6,9 @@
   "scripts": {
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly --report html",
     "codecov": "npm run test && codecov",
-    "release-major": "xyz --repo git@github.com:fantasyland/fantasy-birds.git --increment major",
-    "release-minor": "xyz --repo git@github.com:fantasyland/fantasy-birds.git --increment minor",
-    "release-patch": "xyz --repo git@github.com:fantasyland/fantasy-birds.git --increment patch"
+    "release-major": "xyz --repo git@github.com:futurize/parallel-future.git --increment major",
+    "release-minor": "xyz --repo git@github.com:futurize/parallel-future.git --increment minor",
+    "release-patch": "xyz --repo git@github.com:futurize/parallel-future.git --increment patch"
   },
   "repository": {
     "type": "git",
@@ -36,8 +36,8 @@
     "expect": "1.14.0",
     "istanbul": "^0.4.2",
     "mocha": "2.4.5",
-    "mocha-lcov-reporter": "1.0.0"
+    "mocha-lcov-reporter": "1.0.0",
+    "xyz": "^0.5.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

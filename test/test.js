@@ -11,21 +11,35 @@ const eventuallyEqual = (expected, done) => res => {
 
 describe('#parallel-future', () => {
 
-  function time (text, cb) {
+  function time (text, time) {
+    time = time || 100;
     return new Task((reject, resolve) =>
-      setTimeout(() => resolve(text), 100));
+      setTimeout(() => resolve(text), time));
   }
 
-  function erroring (text, cb) {
-    setTimeout(() => cb(text), 100);
+  function erroring (text) {
+    return new Task((reject, resolve) =>
+      setTimeout(() => reject(text), 100));
   }
 
   it('should run Futures in parallel', done => {
-    console.time()
     parallel([ time(1)
              , time(2)
              , time(3)
-             ]).fork(_, eventuallyEqual([1, 2, 3], () =>{ console.timeEnd(); done() }));
+             ]).fork(_, eventuallyEqual([1, 2, 3], done));
   });
 
+  it('should fail if one Future fails', done => {
+    parallel([ time(1)
+             , erroring('Error')
+             , time(3)
+             ]).fork(eventuallyEqual('Error', done), _);
+  });
+
+  it('should keep the order of the result', done => {
+    parallel([ time(1, 300)
+             , time(2, 200)
+             , time(3, 100)
+             ]).fork(_, eventuallyEqual([1, 2, 3], done));
+  });
 });

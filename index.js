@@ -6,13 +6,15 @@ function parallelFuture (Future) {
     return new Future(function(reject, resolve) {
       var resolved = 0;
       var results = [];
-      function resolvedYet(result) {
-        resolved = resolved + 1;
-        results.push(result);
-        if (resolved === n) return resolve(results);
+      function resolvedYet(idx) {
+        return function(result) {
+          resolved = resolved + 1;
+          results[idx] = result;
+          if (resolved === n) return resolve(results);
+        }
       }
       for (var i = 0; i < n; i++) {
-        futures[i].fork(reject, resolvedYet);
+        futures[i].fork(reject, resolvedYet(i));
       }
     });
   }

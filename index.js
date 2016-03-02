@@ -3,6 +3,10 @@ function parallelFuture (Future) {
   return function (futures) {
     var n = futures.length;
 
+    if (n === 0) {
+      return Future.of([]);
+    }
+
     return new Future(function(reject, resolve) {
       var resolved = 0;
       var results = [];

@@ -12,7 +12,7 @@ parallel-future
 
 ```js
 const Task = require('data.task');
-const parallel = require('../')(Task);
+const parallel = require('parallel-future')(Task);
 
 
 const parallelRequests = parallel([ getUsers, getPosts ]);

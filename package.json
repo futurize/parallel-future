@@ -1,6 +1,6 @@
 {
   "name": "parallel-future",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Run Futures in parallel",
   "main": "index.js",
   "scripts": {

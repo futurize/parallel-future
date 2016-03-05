@@ -1,4 +1,5 @@
 var expect = require('expect');
+var R = require('ramda');
 var Task = require('data.task');
 var parallel = require('../')(Task);
 
@@ -22,11 +23,23 @@ describe('#parallel-future', () => {
       setTimeout(() => reject(text), 100));
   }
 
-  it('should run Futures in parallel', done => {
-    parallel([ time(1)
-             , time(2)
-             , time(3)
-             ]).fork(_, eventuallyEqual([1, 2, 3], done));
+  describe('runs parallel', () => {
+    it('should run Futures in parallel', done => {
+      console.time('parallel-future');
+      parallel([ time(1)
+               , time(2)
+               , time(3)
+               ]).fork(_, eventuallyEqual([1, 2, 3], () => { console.timeEnd('parallel-future'); done() }));
+    });
+
+    it('compared to R.sequence (only appears to be parallel)', done => {
+      console.time('sequence');
+      R.sequence(Task.of)
+              ([ time(1)
+               , time(2)
+               , time(3)
+               ]).fork(_, eventuallyEqual([1, 2, 3], () => { console.timeEnd('sequence'); done() }));
+    });
   });
 
   it('should fail if one Future fails', done => {

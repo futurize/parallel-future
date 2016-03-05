@@ -28,6 +28,38 @@ parallelRequests.fork(onRejected, (results) => {
 Because it only appears to run the `Futures` in parallel.
 Run the tests and see for your self.
 
+```js
+
+  describe('runs parallel', () => {
+    it('should run Futures in parallel', done => {
+      console.time('parallel-future');
+      parallel([ time(1)
+               , time(2)
+               , time(3)
+               ]).fork(_, eventuallyEqual([1, 2, 3], () => { console.timeEnd('parallel-future'); done() }));
+    });
+
+    it('compared to R.sequence (only appears to be parallel)', done => {
+      console.time('sequence');
+      R.sequence(Task.of)
+              ([ time(1)
+               , time(2)
+               , time(3)
+               ]).fork(_, eventuallyEqual([1, 2, 3], () => { console.timeEnd('sequence'); done() }));
+    });
+  });
+```
+
+Output:
+
+```bash
+    runs parallel
+parallel-future: 106ms
+      ✓ should run Futures in parallel (106ms)
+sequence: 315ms
+      ✓ compared to R.sequence (only appears to be parallel) (316ms)
+```
+
 ## API
 
 ### `parallelFuture :: Future -> [Future a] -> Future [a]`

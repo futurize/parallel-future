@@ -23,6 +23,11 @@ parallelRequests.fork(onRejected, (results) => {
 });
 ```
 
+## Why not `R.sequence(Task.of)`?
+
+Because it only appears to run the `Futures` in parallel.
+Run the tests and see for your self.
+
 ## API
 
 ### `parallelFuture :: Future -> [Future a] -> Future [a]`
